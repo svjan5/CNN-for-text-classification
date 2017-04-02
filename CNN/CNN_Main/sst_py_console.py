@@ -83,6 +83,12 @@ with open('../../Datasets/SST1_dataset/datasetSplit.txt') as f:
 
 print(len(split_ind))
 
+
+for i in range(len(split_ind)):
+    if split_ind[i] == 3:
+        split_ind[i] = 1
+        
+
 N_train = split_ind.count(1)
 N_test = split_ind.count(2)
 N_valid = split_ind.count(3)
