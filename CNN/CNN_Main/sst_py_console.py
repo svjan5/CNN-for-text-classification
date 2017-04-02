@@ -8,8 +8,30 @@ from keras import optimizers
 from keras import backend as K
 from w2v import train_word2vec 
 
+
 import numpy as np
 import difflib
+#!/usr/bin/env python
+import signal
+import sys
+
+import pickle, datetime
+
+def signal_handler(signal, frame):
+        print('You pressed Ctrl+C!')
+	date = str(datetime.date.today() )
+	time = str(datetime.datetime.now().time())[:-7]
+
+	filename = './Datasets/Models/' + model_type + '_' + date + '_' +time;
+	with open( filename, 'wb') as output:
+	    pickle.dump([model.get_config(), model.get_weights(), model.history.history], output, pickle.HIGHEST_PROTOCOL)
+	    
+        sys.exit(0)
+	    
+
+
+signal.signal(signal.SIGINT, signal_handler)
+
 
 phr_to_ind = dict()
 
@@ -87,7 +109,7 @@ print(len(split_ind))
 for i in range(len(split_ind)):
     if split_ind[i] == 3:
         split_ind[i] = 1
-        
+
 
 N_train = split_ind.count(1)
 N_test = split_ind.count(2)
