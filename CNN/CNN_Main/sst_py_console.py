@@ -25,7 +25,7 @@ def signal_handler(signal, frame):
 	filename = './Datasets/Models/' + model_type + '_' + date + '_' +time;
 	with open( filename, 'wb') as output:
 	    pickle.dump([model.get_config(), model.get_weights(), model.history.history], output, pickle.HIGHEST_PROTOCOL)
-	    
+
         sys.exit(0)
 	    
 
@@ -275,7 +275,7 @@ if model_type == "CNN-non-static":
 res = model.fit(x_train, y_train, 
           batch_size = batch_size,
           epochs=100,
-          validation_data=(x_valid, y_valid), verbose=2)
+          validation_data=(x_test, y_test), verbose=2)
 
 # Training Accuracy
 predictions = model.predict(x_train)
@@ -283,11 +283,11 @@ pred_train = np.argmax(predictions, axis=1)
 train_label = np.argmax(y_train, axis=1)
 print('Training Accuracy', np.sum(pred_train == train_label) / N_train * 100)
 
-# Training Accuracy
-predictions = model.predict(x_valid)
-pred_valid = np.argmax(predictions, axis=1)
-valid_label = np.argmax(y_valid, axis=1)
-print('Validation Accuracy', np.sum(pred_valid == valid_label) / N_valid * 100)
+# # Training Accuracy
+# predictions = model.predict(x_valid)
+# pred_valid = np.argmax(predictions, axis=1)
+# valid_label = np.argmax(y_valid, axis=1)
+# print('Validation Accuracy', np.s1um(pred_valid == valid_label) / N_valid * 100)
 
 # Test Accuracy
 predictions = model.predict(x_test)
