@@ -1,4 +1,4 @@
-# Convolutional Neural Networks for Sentence Classification
+# Convolutional Neural Networks for Text Classification
 
 Dataset: Stanford Sentiment Dataset [link](https://nlp.stanford.edu/sentiment/index.html) 
 
